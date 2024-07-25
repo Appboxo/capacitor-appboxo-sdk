@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr" class="hydrated">
   <head>
     <meta charset="UTF-8" />
@@ -12,12 +12,16 @@
   <body>
     <main>
       <h1>Capacitor Test Plugin Project</h1>
-      <p>
-        Click to button to open Demo Miniapp
-      </p>
+      <p>Click to button to open Demo Miniapp</p>
       <button onclick="openMiniapp()">Open demo miniapp</button>
 
       <button onclick="getMiniapps()">Get Miniapps</button>
+      <div id="payment-drawer">
+        <div>Payment Info</div>
+        <pre id="payment_info"></pre>
+        <button onclick="submit()">Submit</button>
+        <button onclick="cancel()">Cancel</button>
+      </div>
     </main>
 
     <script src="./js/example.js" type="module"></script>
