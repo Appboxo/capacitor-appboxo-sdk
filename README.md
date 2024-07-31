@@ -21,6 +21,9 @@ npx cap sync
 * [`sendPaymentEvent(...)`](#sendpaymentevent)
 * [`getMiniapps()`](#getminiapps)
 * [`hideMiniapps()`](#hideminiapps)
+* [`addListener('custom_event', ...)`](#addlistenercustom_event-)
+* [`addListener('payment_event', ...)`](#addlistenerpayment_event-)
+* [`addListener('miniapp_lifecycle', ...)`](#addlistenerminiapp_lifecycle-)
 * [`logout()`](#logout)
 * [Interfaces](#interfaces)
 
@@ -144,13 +147,61 @@ To use this function need to enable 'enableMultitaskMode: true' in Appboxo.setCo
 --------------------
 
 
+### addListener('custom_event', ...)
+
+```typescript
+addListener(eventName: 'custom_event', listenerFunc: (customEvent: CustomEvent) => void) => Promise<PluginListenerHandle>
+```
+
+When host app user logs out, it is highly important to clear all miniapp storage data.
+
+| Param              | Type                                                                          |
+| ------------------ | ----------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'custom_event'</code>                                                   |
+| **`listenerFunc`** | <code>(customEvent: <a href="#customevent">CustomEvent</a>) =&gt; void</code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
+
+--------------------
+
+
+### addListener('payment_event', ...)
+
+```typescript
+addListener(eventName: 'payment_event', listenerFunc: (paymentEvent: PaymentEvent) => void) => Promise<PluginListenerHandle>
+```
+
+| Param              | Type                                                                             |
+| ------------------ | -------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'payment_event'</code>                                                     |
+| **`listenerFunc`** | <code>(paymentEvent: <a href="#paymentevent">PaymentEvent</a>) =&gt; void</code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
+
+--------------------
+
+
+### addListener('miniapp_lifecycle', ...)
+
+```typescript
+addListener(eventName: 'miniapp_lifecycle', listenerFunc: (lifecycle: LifecycleEvent) => void) => Promise<PluginListenerHandle>
+```
+
+| Param              | Type                                                                              |
+| ------------------ | --------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'miniapp_lifecycle'</code>                                                  |
+| **`listenerFunc`** | <code>(lifecycle: <a href="#lifecycleevent">LifecycleEvent</a>) =&gt; void</code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
+
+--------------------
+
+
 ### logout()
 
 ```typescript
 logout() => Promise<void>
 ```
-
-When host app user logs out, it is highly important to clear all miniapp storage data.
 
 --------------------
 
@@ -236,5 +287,21 @@ When host app user logs out, it is highly important to clear all miniapp storage
 | **`category`**    | <code>string</code> |
 | **`description`** | <code>string</code> |
 | **`logo`**        | <code>string</code> |
+
+
+#### PluginListenerHandle
+
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+
+#### LifecycleEvent
+
+| Prop            | Type                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`appId`**     | <code>string</code> |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **`lifecycle`** | <code>string</code> | onLaunch - Called when the miniapp will launch with Appboxo.open(...) onResume - Called when the miniapp will start interacting with the user onPause - Called when the miniapp loses foreground state onClose - Called when clicked close button in miniapp or when destroyed miniapp page onError - Called when miniapp fails to launch due to internet connection issues onUserInteraction - Called whenever touch event is dispatched to the miniapp page. onAuth - Called when the miniapp starts login and user allows it |
+| **`error`**     | <code>string</code> |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 </docgen-api>

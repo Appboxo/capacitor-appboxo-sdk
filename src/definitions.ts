@@ -1,3 +1,5 @@
+import type { PluginListenerHandle } from '@capacitor/core';
+
 export interface AppboxoPlugin {
   /**
    * Set global configs
@@ -35,6 +37,21 @@ export interface AppboxoPlugin {
   /**
    * When host app user logs out, it is highly important to clear all miniapp storage data.
    */
+  addListener(
+    eventName: 'custom_event',
+    listenerFunc: (customEvent: CustomEvent) => void,
+  ): Promise<PluginListenerHandle>;
+
+  addListener(
+    eventName: 'payment_event',
+    listenerFunc: (paymentEvent: PaymentEvent) => void,
+  ): Promise<PluginListenerHandle>;
+
+  addListener(
+    eventName: 'miniapp_lifecycle',
+    listenerFunc: (lifecycle: LifecycleEvent) => void,
+  ): Promise<PluginListenerHandle>;
+
   logout(): Promise<void>;
 }
 
