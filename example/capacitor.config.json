@@ -1,6 +1,6 @@
 {
-  "appId": "com.example.plugin",
-  "appName": "example",
+  "appId": "io.boxo.capacitor.demo",
+  "appName": "Boxo Capacitor Demo",
   "webDir": "dist",
   "plugins": {
     "SplashScreen": {
