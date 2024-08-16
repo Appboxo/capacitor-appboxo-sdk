@@ -5,12 +5,24 @@ const clientId = '';
 const authCode = '';
 const appId = '';
 
-Appboxo.setConfig({ clientId: clientId, enableMultitaskMode: true });
+let requestId = '';
+
+Appboxo.setConfig({
+  clientId: clientId,
+  enableMultitaskMode: true,
+  userId: '',
+});
 
 Appboxo.addListener('custom_event', customEvent => {
+  console.log(customEvent);
   console.log('custom_event app_id=' + customEvent.appId);
-  customEvent.payload = { test: 'test msg' };
-  Appboxo.sendCustomEvent(customEvent);
+  if (customEvent.type === 'upgrade_plan') {
+    console.log('upgrade plan');
+    requestId = customEvent.requestId;
+    window.document.getElementById('upgrade_notification').innerHTML =
+      "Received 'upgrade_plan' event";
+    Appboxo.hideMiniapps();
+  }
 });
 Appboxo.addListener('miniapp_lifecycle', event => {
   console.log('lifecycle_app_id=' + event.appId);
@@ -67,8 +79,27 @@ window.cancel = () => {
   Appboxo.sendPaymentEvent({
     appId,
     miniappOrderId: r.miniappOrderId,
-    status: 'fail',
+    status: 'cancelled',
   });
 
+  Appboxo.openMiniapp({ appId });
+};
+
+window.upgrade = () => {
+  Appboxo.sendCustomEvent({
+    appId,
+    requestId,
+    type: 'upgrade_plan',
+    payload: { status: 'success' },
+  });
+  Appboxo.openMiniapp({ appId });
+};
+window.cancelUpgrade = () => {
+  Appboxo.sendCustomEvent({
+    appId,
+    requestId,
+    type: 'upgrade_plan',
+    payload: { status: 'cancelled' },
+  });
   Appboxo.openMiniapp({ appId });
 };
