@@ -1,4 +1,6 @@
 # Changelog
+## [0.1.2]
+- set empty video poster as default [android]
 
 ## [0.1.1]
 - Add sandbox mode
