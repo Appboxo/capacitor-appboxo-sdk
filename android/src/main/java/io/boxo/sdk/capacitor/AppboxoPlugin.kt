@@ -35,6 +35,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
     fun setConfig(call: PluginCall) {
         val clientId = call.getString("clientId")!!
         val userId = call.getString("userId") ?: ""
+        val language = call.getString("language") ?: "en"
         val sandboxMode = call.getBoolean("sandboxMde", false)!!
         val enableMultitaskMode = call.getBoolean("enableMultitaskMode", false)!!
         val theme = call.getString("theme", "system")!!
@@ -54,6 +55,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
                     .sandboxMode(sandboxMode)
                     .multitaskMode(enableMultitaskMode)
                     .setTheme(globalTheme)
+                    .setLanguage(language)
                     .permissionsPage(showPermissionsPage)
                     .showClearCache(showClearCache)
                     .debug(isDebug)

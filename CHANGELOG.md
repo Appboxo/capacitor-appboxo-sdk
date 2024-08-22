@@ -1,4 +1,11 @@
 # Changelog
+## [0.1.3]
+- add language field to config to pass to miniapp
+- add file download implementation
+- save state when user close the miniapp
+- clear cache and tokens when disabling User Data Sharing
+- add event to change status bar color
+
 ## [0.1.2]
 - set empty video poster as default [android]
 

@@ -65,6 +65,10 @@ export interface ConfigOptions {
    */
   userId?: string;
   /**
+   * language value will be passed to the miniapp
+   */
+  language?: string;
+  /**
    * switch to sandbox mode
    */
   sandboxMode?: boolean;
