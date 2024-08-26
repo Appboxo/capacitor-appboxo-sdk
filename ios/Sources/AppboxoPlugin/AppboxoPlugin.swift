@@ -29,6 +29,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
     @objc func setConfig(_ call: CAPPluginCall) {
         let clientId = call.getString("clientId") ?? ""
         let userId = call.getString("userId") ?? ""
+        let language = call.getString("language") ?? "en"
         let sandboxMode = call.getBool("sandboxMde", false)
         let theme = call.getString("theme", "system")
         let showPermissionsPage = call.getBool("showPermissionsPage", true)
@@ -44,6 +45,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         }
 
         let config = Config(clientId: clientId, theme: globalTheme)
+        config.language = language
         config.sandboxMode = sandboxMode
         config.permissionsPage = showPermissionsPage
         config.showClearCache = showClearCache
