@@ -1,4 +1,7 @@
 # Changelog
+## [0.2.0]
+- upgrade to Cap6
+
 ## [0.1.3]
 - add language field to config to pass to miniapp
 - add file download implementation
