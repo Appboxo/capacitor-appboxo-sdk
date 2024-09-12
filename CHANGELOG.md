@@ -1,4 +1,7 @@
 # Changelog
+## [0.2.0]
+- upgrade to Cap6
+
 ## [0.1.4]
 - add saveState flag to openMiniapp
 
