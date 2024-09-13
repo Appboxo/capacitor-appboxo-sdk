@@ -46,7 +46,7 @@ Appboxo.addListener('payment_event', event => {
   Appboxo.hideMiniapps();
 });
 window.openMiniapp = () => {
-  Appboxo.openMiniapp({ appId });
+  Appboxo.openMiniapp({ appId: appId, saveState: false });
 };
 
 window.getMiniapps = () => {

@@ -124,6 +124,10 @@ export interface OpenMiniappOptions {
    * (optional) use to skip miniapp splash screen
    */
   enableSplash?: boolean;
+  /**
+   * (optional) use to save state on close miniapp
+   */
+  saveState?: boolean;
 }
 
 export interface ColorOptions {
