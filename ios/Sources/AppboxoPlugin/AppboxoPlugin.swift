@@ -61,12 +61,15 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let extraUrlParams = call.getObject("extraUrlParams")?.toMap() ?? nil
         let colors = call.getObject("colors")?.toMap() ?? nil
         let enableSplash = call.getBool("enableSplash")
+        let saveState = call.getBool("saveState", true)
 
         let miniApp = Appboxo.shared.getMiniapp(appId: appId)
         miniApp.setData(data: data)
         miniApp.delegate = self
 
         let miniappConfig = MiniappConfig()
+        miniappConfig.saveState = saveState
+
         if let enableSplash = enableSplash {
             miniappConfig.enableSplash(isSplashEnabled: enableSplash)
         }
