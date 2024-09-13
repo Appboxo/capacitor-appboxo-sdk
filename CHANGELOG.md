@@ -1,4 +1,7 @@
 # Changelog
+## [0.1.4]
+- add saveState flag to openMiniapp
+
 ## [0.1.3]
 - add language field to config to pass to miniapp
 - add file download implementation

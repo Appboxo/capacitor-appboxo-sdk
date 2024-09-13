@@ -72,6 +72,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val urlSuffix = call.getString("urlSuffix")
         val colors = call.getObject("colors")
         val enableSplash = call.getBoolean("enableSplash")
+        val saveState = call.getBoolean("saveState") ?: true
         val miniapp: Miniapp = Appboxo.getMiniapp(appId)
             .setCustomEventListener(this)
             .setPaymentEventListener(this)
@@ -106,6 +107,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         }
         if (enableSplash != null)
             configBuilder.enableSplash(enableSplash)
+        configBuilder.saveState(saveState)
         miniapp.setConfig(configBuilder.build())
         miniapp.open(bridge.activity)
     }
