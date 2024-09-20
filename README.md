@@ -215,6 +215,7 @@ logout() => Promise<void>
 | ------------------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------- |
 | **`clientId`**            | <code>string</code>                        | your client id from dashboard                                                            |
 | **`userId`**              | <code>string</code>                        | hostapp userId, will be used for the Consent Management                                  |
+| **`language`**            | <code>string</code>                        | language value will be passed to the miniapp                                             |
 | **`sandboxMode`**         | <code>boolean</code>                       | switch to sandbox mode                                                                   |
 | **`enableMultitaskMode`** | <code>boolean</code>                       | Each miniapp appears as a task in the Recents screen. !It works only on android devices. |
 | **`theme`**               | <code>'light' \| 'dark' \| 'system'</code> | theme for splash screen and other native components used inside miniapp.                 |
@@ -234,6 +235,7 @@ logout() => Promise<void>
 | **`urlSuffix`**      | <code>string</code>                                   | (optional) suffix to append to miniapp URL (like: http://miniapp-url.com/?param=test)             |
 | **`colors`**         | <code><a href="#coloroptions">ColorOptions</a></code> | (optional) provide colors to miniapp if miniapp supports                                          |
 | **`enableSplash`**   | <code>boolean</code>                                  | (optional) use to skip miniapp splash screen                                                      |
+| **`saveState`**      | <code>boolean</code>                                  | (optional) use to save state on close miniapp                                                     |
 
 
 #### ColorOptions
