@@ -1,4 +1,7 @@
 # Changelog
+## [0.1.5]
+- add native share modal
+
 ## [0.1.4]
 - add saveState flag to openMiniapp
 
