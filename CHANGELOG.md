@@ -1,4 +1,7 @@
 # Changelog
+## [0.2.3]
+
+- update native sdk dependencies
 
 ## [0.2.1]
 
