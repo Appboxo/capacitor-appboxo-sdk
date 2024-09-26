@@ -1,4 +1,8 @@
 # Changelog
+## [0.1.6]
+- add aboutPage flag to config
+- update native sdk dependencies
+
 ## [0.1.5]
 - add native share modal
 
