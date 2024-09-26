@@ -11,6 +11,7 @@ Appboxo.setConfig({
   clientId: clientId,
   enableMultitaskMode: true,
   userId: '',
+  showAboutPage: false
 });
 
 Appboxo.addListener('custom_event', customEvent => {
