@@ -1,4 +1,9 @@
 # Changelog
+## [0.2.4]
+
+- update native sdk dependencies
+- add aboutPage flag to show/hide "About Page" on miniapp menu
+
 ## [0.2.3]
 
 - update native sdk dependencies

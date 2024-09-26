@@ -212,7 +212,7 @@ logout() => Promise<void>
 #### ConfigOptions
 
 | Prop                      | Type                                       | Description                                                                              |
-| ------------------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------- |
+|---------------------------| ------------------------------------------ |------------------------------------------------------------------------------------------|
 | **`clientId`**            | <code>string</code>                        | your client id from dashboard                                                            |
 | **`userId`**              | <code>string</code>                        | hostapp userId, will be used for the Consent Management                                  |
 | **`language`**            | <code>string</code>                        | language value will be passed to the miniapp                                             |
@@ -222,6 +222,7 @@ logout() => Promise<void>
 | **`isDebug`**             | <code>boolean</code>                       | enables webview debugging                                                                |
 | **`showPermissionsPage`** | <code>boolean</code>                       | use it to hide "Settings" from Miniapp menu                                              |
 | **`showClearCache`**      | <code>boolean</code>                       | use it to hide "Clear cache" from Miniapp menu                                           |
+| **`showAboutPage`**       | <code>boolean</code>                       | use it to hide "About Page" from Miniapp menu                                            |
 
 
 #### OpenMiniappOptions

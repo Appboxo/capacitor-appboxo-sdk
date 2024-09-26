@@ -42,6 +42,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val isDebug = call.getBoolean("isDebug", false)!!
         val showPermissionsPage = call.getBoolean("showPermissionsPage", true)!!
         val showClearCache = call.getBoolean("showClearCache", true)!!
+        val showAboutPage = call.getBoolean("showAboutPage", true)!!
         val globalTheme: Config.Theme = when (theme) {
             "light" -> Config.Theme.LIGHT
             "dark" -> Config.Theme.DARK
@@ -58,6 +59,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
                     .setLanguage(language)
                     .permissionsPage(showPermissionsPage)
                     .showClearCache(showClearCache)
+                    .showAboutPage(showAboutPage)
                     .debug(isDebug)
                     .build()
             )
@@ -73,43 +75,45 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val colors = call.getObject("colors")
         val enableSplash = call.getBoolean("enableSplash")
         val saveState = call.getBoolean("saveState") ?: true
-        val miniapp: Miniapp = Appboxo.getMiniapp(appId)
-            .setCustomEventListener(this)
-            .setPaymentEventListener(this)
-            .setAuthListener(this)
-            .setLifecycleListener(this)
-        if (data != null) miniapp.setData(data.toMap())
-        val configBuilder = MiniappConfig.Builder()
-        if (theme != null) {
-            val miniappTheme: Config.Theme? = when (theme) {
-                "light" -> Config.Theme.LIGHT
-                "dark" -> Config.Theme.DARK
-                "system" -> Config.Theme.SYSTEM
-                else -> null
+        handler?.post {
+            val miniapp: Miniapp = Appboxo.getMiniapp(appId)
+                .setCustomEventListener(this)
+                .setPaymentEventListener(this)
+                .setAuthListener(this)
+                .setLifecycleListener(this)
+            if (data != null) miniapp.setData(data.toMap())
+            val configBuilder = MiniappConfig.Builder()
+            if (theme != null) {
+                val miniappTheme: Config.Theme? = when (theme) {
+                    "light" -> Config.Theme.LIGHT
+                    "dark" -> Config.Theme.DARK
+                    "system" -> Config.Theme.SYSTEM
+                    else -> null
+                }
+                if (miniappTheme != null) {
+                    configBuilder.setTheme(miniappTheme)
+                }
             }
-            if (miniappTheme != null) {
-                configBuilder.setTheme(miniappTheme)
+            if (extraUrlParams != null) {
+                val map: Map<String, Any> = extraUrlParams.toMap()
+                val stringMap: MutableMap<String, String> = HashMap()
+                for ((key, value) in map) stringMap[key] = value.toString()
+                configBuilder.setExtraUrlParams(stringMap)
             }
+            urlSuffix?.also { suffix -> configBuilder.setUrlSuffix(suffix) }
+            if (colors != null) {
+                configBuilder.setColors(
+                    colors.getString("primaryColor") ?: "",
+                    colors.getString("secondaryColor") ?: "",
+                    colors.getString("tertiaryColor") ?: "",
+                )
+            }
+            if (enableSplash != null)
+                configBuilder.enableSplash(enableSplash)
+            configBuilder.saveState(saveState)
+            miniapp.setConfig(configBuilder.build())
+            miniapp.open(bridge.activity)
         }
-        if (extraUrlParams != null) {
-            val map: Map<String, Any> = extraUrlParams.toMap()
-            val stringMap: MutableMap<String, String> = HashMap()
-            for ((key, value) in map) stringMap[key] = value.toString()
-            configBuilder.setExtraUrlParams(stringMap)
-        }
-        urlSuffix?.also { suffix -> configBuilder.setUrlSuffix(suffix) }
-        if (colors != null) {
-            configBuilder.setColors(
-                colors.getString("primaryColor") ?: "",
-                colors.getString("secondaryColor") ?: "",
-                colors.getString("tertiaryColor") ?: "",
-            )
-        }
-        if (enableSplash != null)
-            configBuilder.enableSplash(enableSplash)
-        configBuilder.saveState(saveState)
-        miniapp.setConfig(configBuilder.build())
-        miniapp.open(bridge.activity)
     }
 
     @PluginMethod
