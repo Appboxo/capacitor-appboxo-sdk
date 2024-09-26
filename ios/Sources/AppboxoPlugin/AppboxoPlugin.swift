@@ -34,6 +34,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let theme = call.getString("theme", "system")
         let showPermissionsPage = call.getBool("showPermissionsPage", true)
         let showClearCache = call.getBool("showClearCache", true)
+        let showAboutPage = call.getBool("showAboutPage", true)
         var globalTheme : Theme = .System
         switch (theme) {
         case "dark":
@@ -49,6 +50,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         config.sandboxMode = sandboxMode
         config.permissionsPage = showPermissionsPage
         config.showClearCache = showClearCache
+        config.showAboutPage = showAboutPage
         config.setUserId(id: userId)
 
         Appboxo.shared.setConfig(config: config)
@@ -62,6 +64,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let colors = call.getObject("colors")?.toMap() ?? nil
         let enableSplash = call.getBool("enableSplash")
         let saveState = call.getBool("saveState", true)
+        let urlSuffix = call.getString("urlSuffix", "")
 
         let miniApp = Appboxo.shared.getMiniapp(appId: appId)
         miniApp.setData(data: data)
@@ -69,6 +72,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
 
         let miniappConfig = MiniappConfig()
         miniappConfig.saveState = saveState
+        miniappConfig.urlSuffix = urlSuffix
 
         if let enableSplash = enableSplash {
             miniappConfig.enableSplash(isSplashEnabled: enableSplash)
