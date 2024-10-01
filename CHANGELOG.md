@@ -1,4 +1,8 @@
 # Changelog
+## [0.2.5]
+
+- add new menu style
+
 ## [0.2.4]
 
 - update native sdk dependencies
