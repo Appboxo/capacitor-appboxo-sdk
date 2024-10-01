@@ -1,4 +1,7 @@
 # Changelog
+## [0.1.7]
+- add new menu style
+
 ## [0.1.6]
 - add aboutPage flag to config
 - update native sdk dependencies
