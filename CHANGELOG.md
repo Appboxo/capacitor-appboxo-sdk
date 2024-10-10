@@ -1,6 +1,9 @@
 # Changelog
+## [0.1.8]
+- add new menu style (style_2)
+
 ## [0.1.7]
-- add new menu style
+- add new menu style (style_1)
 
 ## [0.1.6]
 - add aboutPage flag to config
