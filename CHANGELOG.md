@@ -1,7 +1,11 @@
 # Changelog
+## [0.2.6]
+
+- add new menu style (style_2)
+
 ## [0.2.5]
 
-- add new menu style
+- add new menu style (style_1)
 
 ## [0.2.4]
 
