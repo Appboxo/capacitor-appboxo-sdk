@@ -1,4 +1,9 @@
 # Changelog
+## [0.2.7]
+
+- changed more icon for style_2
+- added progressbar for share event
+
 ## [0.2.6]
 
 - add new menu style (style_2)
