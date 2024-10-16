@@ -1,21 +1,57 @@
 # Changelog
-## [0.1.8]
+## [0.2.7]
+
+- changed more icon for style_2
+- added progressbar for share event
+
+## [0.2.6]
+
 - add new menu style (style_2)
 
-## [0.1.7]
+## [0.2.5]
+
 - add new menu style (style_1)
 
-## [0.1.6]
+## [0.2.4]
+
+- update native sdk dependencies
+- add aboutPage flag to show/hide "About Page" on miniapp menu
+
+## [0.2.3]
+
+- update native sdk dependencies
+
+## [0.2.1]
+
+- add native share modal
+
+## [0.2.0]
+
+- upgrade to Cap6
+
+## [0.1.8] - cap5
+
+- add new menu style (style_2)
+
+## [0.1.7] - cap5
+
+- add new menu style (style_1)
+
+## [0.1.6] - cap5
+
 - add aboutPage flag to config
 - update native sdk dependencies
 
-## [0.1.5]
+## [0.1.5] - cap5
+
 - add native share modal
 
 ## [0.1.4]
+
 - add saveState flag to openMiniapp
 
 ## [0.1.3]
+
 - add language field to config to pass to miniapp
 - add file download implementation
 - save state when user close the miniapp
@@ -23,20 +59,25 @@
 - add event to change status bar color
 
 ## [0.1.2]
+
 - set empty video poster as default [android]
 
 ## [0.1.1]
+
 - Add sandbox mode
 - Update network timeouts [android]
 
 ## [0.1.0]
+
 - Close miniapp if webview can't go back on press back button [ios]
 - Fix play video inline [ios]
 - Fix hide/show miniapp [ios]
 
 ## [0.0.5]
+
 - Revert renaming package for [ios]
 
 ## [0.0.4]
+
 - Add event listener type
 - Downgrade capacitor version and rename package
