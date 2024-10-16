@@ -35,6 +35,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let showPermissionsPage = call.getBool("showPermissionsPage", true)
         let showClearCache = call.getBool("showClearCache", true)
         let showAboutPage = call.getBool("showAboutPage", true)
+        let miniappSettingsExpirationTime = call.getInt("miniappSettingsExpirationTime", 60)
         var globalTheme : Theme = .System
         switch (theme) {
         case "dark":
@@ -52,6 +53,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         config.showClearCache = showClearCache
         config.showAboutPage = showAboutPage
         config.setUserId(id: userId)
+        config.miniappSettingsExpirationTime = miniappSettingsExpirationTime
 
         Appboxo.shared.setConfig(config: config)
     }

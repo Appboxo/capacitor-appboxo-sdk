@@ -1,4 +1,8 @@
 # Changelog
+## [0.2.8]
+
+- add miniapp settings expiration time to configs
+
 ## [0.2.7]
 
 - changed more icon for style_2

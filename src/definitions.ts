@@ -97,6 +97,10 @@ export interface ConfigOptions {
    * use it to hide "About Page" from Miniapp menu
    */
   showAboutPage?: boolean;
+  /**
+  * use it to change miniapp settings cache time in sec. By default is 60 sec
+  */
+  miniappSettingsExpirationTime?: number;
 }
 
 export interface OpenMiniappOptions {

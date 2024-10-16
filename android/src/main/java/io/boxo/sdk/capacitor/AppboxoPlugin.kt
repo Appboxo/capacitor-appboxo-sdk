@@ -43,6 +43,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val showPermissionsPage = call.getBoolean("showPermissionsPage", true)!!
         val showClearCache = call.getBoolean("showClearCache", true)!!
         val showAboutPage = call.getBoolean("showAboutPage", true)!!
+        val miniappSettingsExpirationTime = call.getInt("miniappSettingsExpirationTime", 60)!!
         val globalTheme: Config.Theme = when (theme) {
             "light" -> Config.Theme.LIGHT
             "dark" -> Config.Theme.DARK
@@ -60,6 +61,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
                     .permissionsPage(showPermissionsPage)
                     .showClearCache(showClearCache)
                     .showAboutPage(showAboutPage)
+                    .setMiniappSettingsExpirationTime(miniappSettingsExpirationTime)
                     .debug(isDebug)
                     .build()
             )
