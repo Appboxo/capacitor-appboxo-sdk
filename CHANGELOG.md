@@ -1,4 +1,10 @@
 # Changelog
+## [0.3.0]
+
+- clear cache with reload
+- add support eSim flag (android)
+- add maintenance mode
+
 ## [0.2.8]
 
 - add miniapp settings expiration time to configs
