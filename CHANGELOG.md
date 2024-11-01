@@ -1,4 +1,9 @@
 # Changelog
+## [0.3.1]
+
+- no internet connection page
+- fix crash on auth
+
 ## [0.3.0]
 
 - clear cache with reload
