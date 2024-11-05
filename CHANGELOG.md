@@ -1,4 +1,8 @@
 # Changelog
+## [0.3.2]
+
+- [android] change action button color for dark theme
+
 ## [0.3.1]
 
 - no internet connection page
