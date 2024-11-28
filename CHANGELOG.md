@@ -1,4 +1,9 @@
 # Changelog
+## [0.3.3]
+
+- add new menu style
+- fix open_miniapp_duration on reload
+
 ## [0.3.2]
 
 - [android] change action button color for dark theme
