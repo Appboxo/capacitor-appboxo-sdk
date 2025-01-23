@@ -1,4 +1,10 @@
 # Changelog
+## [0.4.0]
+
+- LTR/RTL support by language
+- Fix problem with cookies and storage on logout
+- Multiline error popup
+
 ## [0.3.3]
 
 - add new menu style
