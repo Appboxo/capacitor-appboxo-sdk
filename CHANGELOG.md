@@ -1,4 +1,9 @@
 # Changelog
+## [0.5.0]
+
+- Added list of user fields to consent screen
+- Some improvements in native sdk  
+
 ## [0.4.0]
 
 - LTR/RTL support by language
