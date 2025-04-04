@@ -1,4 +1,10 @@
 # Changelog
+## [0.6.0]
+
+- add native pull to refresh
+- add camera option to file picker
+- other UI improvements
+
 ## [0.5.0]
 
 - Added list of user fields to consent screen
