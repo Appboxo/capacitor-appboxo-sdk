@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.source_files = 'ios/Sources/**/*.{swift,h,m,c,cc,mm,cpp}'
   s.ios.deployment_target  = '13.0'
   s.dependency 'Capacitor'
-  s.dependency 'AppBoxoSDK', '1.9.1'
+  s.dependency 'AppBoxoSDK', '1.9.3'
   s.swift_version = '5.1'
 end

@@ -1,4 +1,8 @@
 # Changelog
+## [0.7.0]
+- add new menu style
+- improved whitelisted url behavior
+
 ## [0.6.0]
 
 - add native pull to refresh

@@ -2,15 +2,15 @@ package io.boxo.sdk.capacitor
 
 import android.os.Handler
 import android.os.Looper
-import com.appboxo.data.models.MiniappData
-import com.appboxo.js.params.CustomEvent
-import com.appboxo.js.params.PaymentData
-import com.appboxo.sdk.Appboxo
-import com.appboxo.sdk.Config
-import com.appboxo.sdk.Miniapp
-import com.appboxo.sdk.MiniappConfig
-import com.appboxo.sdk.MiniappListCallback
-import com.appboxo.ui.main.AppboxoActivity
+import io.boxo.data.models.MiniappData
+import io.boxo.js.params.CustomEvent
+import io.boxo.js.params.PaymentData
+import io.boxo.sdk.Boxo
+import io.boxo.sdk.Config
+import io.boxo.sdk.Miniapp
+import io.boxo.sdk.MiniappConfig
+import io.boxo.sdk.MiniappListCallback
+import io.boxo.ui.main.BoxoActivity
 import com.getcapacitor.JSArray
 import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
@@ -27,7 +27,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
 
     override fun load() {
         super.load()
-        Appboxo.init(bridge.activity.application)
+        Boxo.init(bridge.activity.application)
         handler = Handler(Looper.getMainLooper())
     }
 
@@ -49,7 +49,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
             "dark" -> Config.Theme.DARK
             else -> Config.Theme.SYSTEM
         }
-        Appboxo
+        Boxo
             .setConfig(
                 Config.Builder()
                     .setClientId(clientId)
@@ -78,7 +78,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val enableSplash = call.getBoolean("enableSplash")
         val saveState = call.getBoolean("saveState") ?: true
         handler?.post {
-            val miniapp: Miniapp = Appboxo.getMiniapp(appId)
+            val miniapp: Miniapp = Boxo.getMiniapp(appId)
                 .setCustomEventListener(this)
                 .setPaymentEventListener(this)
                 .setAuthListener(this)
@@ -122,18 +122,18 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
     fun setAuthCode(call: PluginCall) {
         val appId = call.getString("appId")!!
         val authCode = call.getString("authCode")!!
-        Appboxo.getMiniapp(appId)
+        Boxo.getMiniapp(appId)
             .setAuthCode(authCode)
     }
 
     @PluginMethod
     fun closeMiniapp(call: PluginCall) {
         val appId = call.getString("appId")!!
-        handler?.post { Appboxo.getExistingMiniapp(appId)?.close() }
+        handler?.post { Boxo.getExistingMiniapp(appId)?.close() }
     }
 
     override fun handle(
-        miniAppActivity: AppboxoActivity,
+        miniAppActivity: BoxoActivity,
         miniapp: Miniapp,
         customEvent: CustomEvent
     ) {
@@ -193,7 +193,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         sendEvent(MINIAPP_LIFECYCLE_EVENT_NAME, params)
     }
 
-    override fun onAuth(appboxoActivity: AppboxoActivity, miniapp: Miniapp) {
+    override fun onAuth(boxoActivity: BoxoActivity, miniapp: Miniapp) {
         val params = JSObject()
         params.put("appId", miniapp.appId)
         params.put("lifecycle", "onAuth")
@@ -210,7 +210,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
                 call.getString("errorType"),
                 call.getObject("payload")?.toMap() ?: emptyMap()
             )
-            handler?.post { Appboxo.getExistingMiniapp(appId)?.sendEvent(event) }
+            handler?.post { Boxo.getExistingMiniapp(appId)?.sendEvent(event) }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -229,7 +229,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
                 call.getString("hostappOrderId") ?: "",
                 call.getObject("extraParams")?.toMap()
             )
-            handler?.post { Appboxo.getExistingMiniapp(appId)?.sendPaymentResult(data) }
+            handler?.post { Boxo.getExistingMiniapp(appId)?.sendPaymentResult(data) }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -237,7 +237,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
 
     @PluginMethod
     fun getMiniapps(call: PluginCall) {
-        Appboxo.getMiniapps(object : MiniappListCallback {
+        Boxo.getMiniapps(object : MiniappListCallback {
             override fun onSuccess(miniapps: List<MiniappData>) {
                 try {
                     val list = JSArray()
@@ -269,12 +269,12 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
 
     @PluginMethod
     fun hideMiniapps(call: PluginCall) {
-        Appboxo.hideMiniapps()
+        Boxo.hideMiniapps()
     }
 
     @PluginMethod
     fun logout(call: PluginCall) {
-        Appboxo.logout()
+        Boxo.logout()
     }
 
     private fun sendEvent(name: String, data: JSObject) {
@@ -282,7 +282,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
     }
 
     override fun handle(
-        miniAppActivity: AppboxoActivity,
+        boxoActivity: BoxoActivity,
         miniapp: Miniapp,
         paymentData: PaymentData
     ) {
