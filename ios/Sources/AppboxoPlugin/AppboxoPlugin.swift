@@ -67,6 +67,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let enableSplash = call.getBool("enableSplash")
         let saveState = call.getBool("saveState", true)
         let urlSuffix = call.getString("urlSuffix", "")
+        let pageAnimation = call.getString("pageAnimation", "")
 
         let miniApp = Appboxo.shared.getMiniapp(appId: appId)
         miniApp.setData(data: data)
@@ -76,6 +77,21 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         miniappConfig.saveState = saveState
         miniappConfig.urlSuffix = urlSuffix
 
+        switch pageAnimation {
+        case "BOTTOM_TO_TOP":
+            miniappConfig.pageAnimation = .BOTTOM_TO_TOP
+        case "TOP_TO_BOTTOM":
+            miniappConfig.pageAnimation = .TOP_TO_BOTTOM
+        case "LEFT_TO_RIGHT":
+            miniappConfig.pageAnimation = .LEFT_TO_RIGHT
+        case "RIGHT_TO_LEFT":
+            miniappConfig.pageAnimation = .RIGHT_TO_LEFT
+        case "FADE_IN":
+            miniappConfig.pageAnimation = .FADE_IN
+        default:
+            miniappConfig.pageAnimation = .BOTTOM_TO_TOP
+        }
+        
         if let enableSplash = enableSplash {
             miniappConfig.enableSplash(isSplashEnabled: enableSplash)
         }
