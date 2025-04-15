@@ -3,6 +3,7 @@ package io.boxo.sdk.capacitor
 import android.os.Handler
 import android.os.Looper
 import io.boxo.data.models.MiniappData
+import io.boxo.data.models.PageAnimation
 import io.boxo.js.params.CustomEvent
 import io.boxo.js.params.PaymentData
 import io.boxo.sdk.Boxo
@@ -76,6 +77,9 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val urlSuffix = call.getString("urlSuffix")
         val colors = call.getObject("colors")
         val enableSplash = call.getBoolean("enableSplash")
+        val pageAnimation =
+            runCatching { PageAnimation.valueOf(call.getString("pageAnimation") ?: "") }
+                .getOrDefault(PageAnimation.BOTTOM_TO_TOP)
         val saveState = call.getBoolean("saveState") ?: true
         handler?.post {
             val miniapp: Miniapp = Boxo.getMiniapp(appId)
@@ -113,6 +117,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
             if (enableSplash != null)
                 configBuilder.enableSplash(enableSplash)
             configBuilder.saveState(saveState)
+            configBuilder.pageAnimation(pageAnimation)
             miniapp.setConfig(configBuilder.build())
             miniapp.open(bridge.activity)
         }

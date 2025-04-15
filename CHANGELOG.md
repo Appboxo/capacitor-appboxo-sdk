@@ -1,4 +1,7 @@
 # Changelog
+## [0.7.1]
+- add miniapp page animation
+
 ## [0.7.0]
 - add new menu style
 - improved whitelisted url behavior

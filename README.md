@@ -142,7 +142,7 @@ hideMiniapps() => Promise<void>
 ```
 
 Miniapp opens on a native screen. To show payment processing page need to hide miniapp screen.
-To use this function need to enable 'enableMultitaskMode: true' in Appboxo.setConfigs()
+To use this function need to enable 'enableMultitaskMode: true' in Boxo.setConfig()
 
 --------------------
 
@@ -228,16 +228,17 @@ logout() => Promise<void>
 
 #### OpenMiniappOptions
 
-| Prop                 | Type                                                  | Description                                                                                       |
-| -------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| **`appId`**          | <code>string</code>                                   | miniapp id                                                                                        |
-| **`data`**           | <code>object</code>                                   | (optional) data as Map that is sent to miniapp                                                    |
-| **`theme`**          | <code>'light' \| 'dark' \| 'system'</code>            | (optional) miniapp theme "dark" \| "light" (by default is system theme)                           |
-| **`extraUrlParams`** | <code>object</code>                                   | (optional) extra query params to append to miniapp URL (like: http://miniapp-url.com/?param=test) |
-| **`urlSuffix`**      | <code>string</code>                                   | (optional) suffix to append to miniapp URL (like: http://miniapp-url.com/?param=test)             |
-| **`colors`**         | <code><a href="#coloroptions">ColorOptions</a></code> | (optional) provide colors to miniapp if miniapp supports                                          |
-| **`enableSplash`**   | <code>boolean</code>                                  | (optional) use to skip miniapp splash screen                                                      |
-| **`saveState`**      | <code>boolean</code>                                  | (optional) use to save state on close miniapp                                                     |
+| Prop                 | Type                                                                                               | Description                                                                                       |
+| -------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **`appId`**          | <code>string</code>                                                                                | miniapp id                                                                                        |
+| **`data`**           | <code>object</code>                                                                                | (optional) data as Map that is sent to miniapp                                                    |
+| **`theme`**          | <code>'light' \| 'dark' \| 'system'</code>                                                         | (optional) miniapp theme "dark" \| "light" (by default is system theme)                           |
+| **`extraUrlParams`** | <code>object</code>                                                                                | (optional) extra query params to append to miniapp URL (like: http://miniapp-url.com/?param=test) |
+| **`urlSuffix`**      | <code>string</code>                                                                                | (optional) suffix to append to miniapp URL (like: http://miniapp-url.com/?param=test)             |
+| **`colors`**         | <code><a href="#coloroptions">ColorOptions</a></code>                                              | (optional) provide colors to miniapp if miniapp supports                                          |
+| **`enableSplash`**   | <code>boolean</code>                                                                               | (optional) use to skip miniapp splash screen                                                      |
+| **`saveState`**      | <code>boolean</code>                                                                               | (optional) use to save state on close miniapp                                                     |
+| **`pageAnimation`**  | <code>'BOTTOM_TO_TOP' \| 'TOP_TO_BOTTOM' \| 'LEFT_TO_RIGHT' \| 'RIGHT_TO_LEFT' \| 'FADE_IN'</code> | (optional) use to change launch animation for miniapp.                                            |
 
 
 #### ColorOptions
@@ -302,10 +303,10 @@ logout() => Promise<void>
 
 #### LifecycleEvent
 
-| Prop            | Type                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`appId`**     | <code>string</code> |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **`lifecycle`** | <code>string</code> | onLaunch - Called when the miniapp will launch with Appboxo.open(...) onResume - Called when the miniapp will start interacting with the user onPause - Called when the miniapp loses foreground state onClose - Called when clicked close button in miniapp or when destroyed miniapp page onError - Called when miniapp fails to launch due to internet connection issues onUserInteraction - Called whenever touch event is dispatched to the miniapp page. onAuth - Called when the miniapp starts login and user allows it |
-| **`error`**     | <code>string</code> |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Prop            | Type                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| --------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`appId`**     | <code>string</code> |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **`lifecycle`** | <code>string</code> | onLaunch - Called when the miniapp will launch with Boxo.open(...) onResume - Called when the miniapp will start interacting with the user onPause - Called when the miniapp loses foreground state onClose - Called when clicked close button in miniapp or when destroyed miniapp page onError - Called when miniapp fails to launch due to internet connection issues onUserInteraction - Called whenever touch event is dispatched to the miniapp page. onAuth - Called when the miniapp starts login and user allows it |
+| **`error`**     | <code>string</code> |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 </docgen-api>

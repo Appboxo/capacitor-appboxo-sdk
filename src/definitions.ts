@@ -31,7 +31,7 @@ export interface AppboxoPlugin {
   getMiniapps(): Promise<MiniappListResult>;
   /**
    * Miniapp opens on a native screen. To show payment processing page need to hide miniapp screen.
-   * To use this function need to enable 'enableMultitaskMode: true' in Appboxo.setConfigs()
+   * To use this function need to enable 'enableMultitaskMode: true' in Boxo.setConfig()
    */
   hideMiniapps(): Promise<void>;
   /**
@@ -136,6 +136,10 @@ export interface OpenMiniappOptions {
    * (optional) use to save state on close miniapp
    */
   saveState?: boolean;
+  /**
+  * (optional) use to change launch animation for miniapp.
+  */
+  pageAnimation?: 'BOTTOM_TO_TOP' | 'TOP_TO_BOTTOM' | 'LEFT_TO_RIGHT' | 'RIGHT_TO_LEFT' | 'FADE_IN';
 }
 
 export interface ColorOptions {
@@ -166,7 +170,7 @@ export interface PaymentEvent {
 export interface LifecycleEvent {
   appId: string;
   /**
-   * onLaunch -  Called when the miniapp will launch with Appboxo.open(...)
+   * onLaunch -  Called when the miniapp will launch with Boxo.open(...)
    * onResume -  Called when the miniapp will start interacting with the user
    * onPause -  Called when the miniapp loses foreground state
    * onClose -  Called when clicked close button in miniapp or when destroyed miniapp page

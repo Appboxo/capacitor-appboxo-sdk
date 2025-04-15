@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { Appboxo } from 'capacitor-boxo-sdk';
+import { Boxo } from 'capacitor-boxo-sdk';
 
 const clientId = '';
 const authCode = '';
@@ -7,14 +7,14 @@ const appId = '';
 
 let requestId = '';
 
-Appboxo.setConfig({
+Boxo.setConfig({
   clientId: clientId,
-  enableMultitaskMode: true,
+  enableMultitaskMode: false,
   userId: '',
   showAboutPage: false
 });
 
-Appboxo.addListener('custom_event', customEvent => {
+Boxo.addListener('custom_event', customEvent => {
   console.log(customEvent);
   console.log('custom_event app_id=' + customEvent.appId);
   if (customEvent.type === 'upgrade_plan') {
@@ -22,21 +22,21 @@ Appboxo.addListener('custom_event', customEvent => {
     requestId = customEvent.requestId;
     window.document.getElementById('upgrade_notification').innerHTML =
       "Received 'upgrade_plan' event";
-    Appboxo.hideMiniapps();
+    Boxo.hideMiniapps();
   }
 });
-Appboxo.addListener('miniapp_lifecycle', event => {
+Boxo.addListener('miniapp_lifecycle', event => {
   console.log('lifecycle_app_id=' + event.appId);
   console.log('lifecycle=' + event.lifecycle);
   if (event.lifecycle == 'onAuth') {
     console.log('get auth code from hostapp backend');
-    Appboxo.setAuthCode({
+    Boxo.setAuthCode({
       appId: event.appId,
       authCode,
     });
   }
 });
-Appboxo.addListener('payment_event', event => {
+Boxo.addListener('payment_event', event => {
   console.log('paymentEvent_app_id=' + event.appId);
   console.log('amount=' + event.amount);
   window.document.getElementById('payment_info').innerHTML = JSON.stringify(
@@ -44,14 +44,14 @@ Appboxo.addListener('payment_event', event => {
     null,
     2,
   );
-  Appboxo.hideMiniapps();
+  Boxo.hideMiniapps();
 });
 window.openMiniapp = () => {
-  Appboxo.openMiniapp({ appId: appId, saveState: false });
+  Boxo.openMiniapp({ appId: appId, saveState: false, pageAnimation: 'RIGHT_TO_LEFT' });
 };
 
 window.getMiniapps = () => {
-  Appboxo.getMiniapps().then(result => {
+  Boxo.getMiniapps().then(result => {
     console.log(JSON.stringify(result));
   });
 };
@@ -61,7 +61,7 @@ window.submit = () => {
     window.document.getElementById('payment_info').innerHTML,
   );
 
-  Appboxo.sendPaymentEvent({
+  Boxo.sendPaymentEvent({
     appId,
     miniappOrderId: r.miniappOrderId,
     amount: r.amount,
@@ -69,7 +69,7 @@ window.submit = () => {
     transactionToken: r.transactionToken,
     status: 'success',
   });
-  Appboxo.openMiniapp({ appId });
+  Boxo.openMiniapp({ appId });
 };
 
 window.cancel = () => {
@@ -77,30 +77,30 @@ window.cancel = () => {
     window.document.getElementById('payment_info').innerHTML,
   );
 
-  Appboxo.sendPaymentEvent({
+  Boxo.sendPaymentEvent({
     appId,
     miniappOrderId: r.miniappOrderId,
     status: 'cancelled',
   });
 
-  Appboxo.openMiniapp({ appId });
+  Boxo.openMiniapp({ appId });
 };
 
 window.upgrade = () => {
-  Appboxo.sendCustomEvent({
+  Boxo.sendCustomEvent({
     appId,
     requestId,
     type: 'upgrade_plan',
     payload: { status: 'success' },
   });
-  Appboxo.openMiniapp({ appId });
+  Boxo.openMiniapp({ appId });
 };
 window.cancelUpgrade = () => {
-  Appboxo.sendCustomEvent({
+  Boxo.sendCustomEvent({
     appId,
     requestId,
     type: 'upgrade_plan',
     payload: { status: 'cancelled' },
   });
-  Appboxo.openMiniapp({ appId });
+  Boxo.openMiniapp({ appId });
 };
