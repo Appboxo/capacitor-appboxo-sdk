@@ -1,6 +1,6 @@
 import Foundation
 import Capacitor
-import AppBoxoSDK
+import BoxoSDK
 
 /**
  * Please read the Capacitor iOS Plugin Development Guide
@@ -55,7 +55,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         config.setUserId(id: userId)
         config.miniappSettingsExpirationTime = miniappSettingsExpirationTime
 
-        Appboxo.shared.setConfig(config: config)
+        Boxo.shared.setConfig(config: config)
     }
 
     @objc func openMiniapp(_ call: CAPPluginCall) {
@@ -69,7 +69,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let urlSuffix = call.getString("urlSuffix", "")
         let pageAnimation = call.getString("pageAnimation", "")
 
-        let miniApp = Appboxo.shared.getMiniapp(appId: appId)
+        let miniApp = Boxo.shared.getMiniapp(appId: appId)
         miniApp.setData(data: data)
         miniApp.delegate = self
 
@@ -131,14 +131,14 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let authCode = call.getString("authCode") ?? ""
 
         DispatchQueue.main.async {
-            Appboxo.shared.getMiniapp(appId: appId).setAuthCode(authCode: authCode)
+            Boxo.shared.getMiniapp(appId: appId).setAuthCode(authCode: authCode)
         }
     }
 
     @objc func closeMiniapp(_ call: CAPPluginCall) {
         let appId = call.getString("appId") ?? ""
 
-        if let miniapp = Appboxo.shared.getExistingMiniapp(appId: appId) {
+        if let miniapp = Boxo.shared.getExistingMiniapp(appId: appId) {
             DispatchQueue.main.async {
                 miniapp.close()
             }
@@ -155,7 +155,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         customEvent.payload = call.getObject("payload")?.toMap()
 
         DispatchQueue.main.async {
-            Appboxo.shared.getMiniapp(appId: appId).sendCustomEvent(customEvent: customEvent)
+            Boxo.shared.getMiniapp(appId: appId).sendCustomEvent(customEvent: customEvent)
         }
     }
 
@@ -172,12 +172,12 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         paymentData.extraParams = call.getObject("extraParams")?.toMap()
 
         DispatchQueue.main.async {
-            Appboxo.shared.getMiniapp(appId: appId).sendPaymentEvent(paymentData: paymentData)
+            Boxo.shared.getMiniapp(appId: appId).sendPaymentEvent(paymentData: paymentData)
         }
     }
 
     @objc func getMiniapps(_ call: CAPPluginCall) {
-        Appboxo.shared.getMiniapps { miniapps, error in
+        Boxo.shared.getMiniapps { miniapps, error in
             if let error = error {
                 call.reject(error)
             } else {
@@ -199,13 +199,13 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc func hideMiniapps(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
-            Appboxo.shared.hideMiniapps()
+            Boxo.shared.hideMiniapps()
         }
     }
 
     @objc func logout(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
-            Appboxo.shared.logout()
+            Boxo.shared.logout()
         }
     }
 }
