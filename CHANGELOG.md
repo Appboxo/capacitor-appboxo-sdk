@@ -1,4 +1,7 @@
 # Changelog
+## [0.8.0]
+- upgrade to Cap7
+
 ## [0.7.1]
 - add miniapp page animation
 
