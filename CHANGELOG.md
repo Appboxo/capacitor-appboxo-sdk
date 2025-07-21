@@ -1,4 +1,7 @@
 # Changelog
+## [0.8.1]
+- upgraded to target api 35 [android]
+
 ## [0.8.0]
 - upgrade to Cap7
 
