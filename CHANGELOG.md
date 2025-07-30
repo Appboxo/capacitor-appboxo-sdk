@@ -1,4 +1,7 @@
 # Changelog
+## [0.8.2]
+- support dark mode logo 
+
 ## [0.8.1]
 - upgraded to target api 35 [android]
 
