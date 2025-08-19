@@ -1,4 +1,7 @@
 # Changelog
+## [0.8.3]
+- fix ui elements in dark mode
+
 ## [0.8.2]
 - support dark mode logo 
 
