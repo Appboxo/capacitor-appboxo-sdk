@@ -1,4 +1,7 @@
 # Changelog
+## [0.8.4]
+- fix crashes when changing the system theme 
+
 ## [0.8.3]
 - fix ui elements in dark mode
 
