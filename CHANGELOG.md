@@ -1,4 +1,7 @@
 # Changelog
+## [0.8.5]
+- fix bug on auth [android]
+
 ## [0.8.4]
 - fix crashes when changing the system theme 
 
