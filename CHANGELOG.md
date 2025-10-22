@@ -1,4 +1,8 @@
 # Changelog
+## [0.9.0]
+- add setAuthTokens method
+- update native sdk versions
+
 ## [0.8.5]
 - fix bug on auth [android]
 

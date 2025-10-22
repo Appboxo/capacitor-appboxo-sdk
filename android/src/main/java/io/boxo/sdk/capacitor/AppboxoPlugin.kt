@@ -132,6 +132,14 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
     }
 
     @PluginMethod
+    fun setAuthTokens(call: PluginCall) {
+        val appId = call.getString("appId")!!
+        val tokens = call.getObject("tokens")?.toMap() ?: emptyMap()
+        Boxo.getMiniapp(appId)
+            .setAuthTokens(tokens as Map<String, String>)
+    }
+
+    @PluginMethod
     fun closeMiniapp(call: PluginCall) {
         val appId = call.getString("appId")!!
         handler?.post { Boxo.getExistingMiniapp(appId)?.close() }

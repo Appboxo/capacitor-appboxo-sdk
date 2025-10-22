@@ -14,6 +14,10 @@ export interface AppboxoPlugin {
    */
   setAuthCode(options: { appId: string; authCode: string }): Promise<void>;
   /**
+   * get AuthTokens from hostapp backend and send it to miniapp
+   */
+  setAuthTokens(options: { appId: string; tokens: { [key: string]: string } }): Promise<void>;
+  /**
    * close miniapp by appId
    */
   closeMiniapp(options: { appId: string }): Promise<void>;
