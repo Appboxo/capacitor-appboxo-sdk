@@ -18,6 +18,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "setConfig", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "openMiniapp", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setAuthCode", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setAuthTokens", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "closeMiniapp", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "sendCustomEvent", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "sendPaymentEvent", returnType: CAPPluginReturnPromise),
@@ -132,6 +133,15 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
 
         DispatchQueue.main.async {
             Boxo.shared.getMiniapp(appId: appId).setAuthCode(authCode: authCode)
+        }
+    }
+    
+    @objc func setAuthTokens(_ call: CAPPluginCall) {
+        let appId = call.getString("appId") ?? ""
+        let tokens = call.getObject("tokens")?.toMap() ?? [:]
+
+        DispatchQueue.main.async {
+            Boxo.shared.getMiniapp(appId: appId).setAuthTokens(tokens)
         }
     }
 
