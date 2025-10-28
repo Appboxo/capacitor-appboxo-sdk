@@ -2,11 +2,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "CapacitorBoxoSdk",
+    name: "AppboxoCapacitorBoxoSdk",
     platforms: [.iOS(.v14)],
     products: [
         .library(
-            name: "CapacitorBoxoSdk",
+            name: "AppboxoCapacitorBoxoSdk",
             targets: ["AppboxoPlugin"])
     ],
     dependencies: [

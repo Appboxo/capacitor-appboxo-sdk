@@ -1,6 +1,6 @@
 {
   "name": "@appboxo/capacitor-boxo-sdk",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A capacitor wrapper over Appboxo SDK for IOS and Android.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -13,7 +13,7 @@
     "ios/Sources",
     "ios/Tests",
     "Package.swift",
-    "CapacitorBoxoSdk.podspec"
+    "AppboxoCapacitorBoxoSdk.podspec"
   ],
   "author": "Appboxo pte. ltd",
   "license": "MIT",
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
-    "verify:ios": "xcodebuild -scheme CapacitorBoxoSdk -destination generic/platform=iOS",
+    "verify:ios": "xcodebuild -scheme AppboxoCapacitorBoxoSdk -destination generic/platform=iOS",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",

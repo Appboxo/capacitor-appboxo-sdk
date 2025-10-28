@@ -1,4 +1,7 @@
 # Changelog
+## [0.9.1]
+- fix ios build
+
 ## [0.9.0]
 - add setAuthTokens method
 - update native sdk versions
