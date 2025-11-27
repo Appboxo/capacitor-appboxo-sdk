@@ -16,6 +16,7 @@ npx cap sync
 * [`setConfig(...)`](#setconfig)
 * [`openMiniapp(...)`](#openminiapp)
 * [`setAuthCode(...)`](#setauthcode)
+* [`setAuthTokens(...)`](#setauthtokens)
 * [`closeMiniapp(...)`](#closeminiapp)
 * [`sendCustomEvent(...)`](#sendcustomevent)
 * [`sendPaymentEvent(...)`](#sendpaymentevent)
@@ -73,6 +74,21 @@ get AuthCode from hostapp backend and send it to miniapp
 | Param         | Type                                              |
 | ------------- | ------------------------------------------------- |
 | **`options`** | <code>{ appId: string; authCode: string; }</code> |
+
+--------------------
+
+
+### setAuthTokens(...)
+
+```typescript
+setAuthTokens(options: { appId: string; tokens: { [key: string]: string; }; }) => Promise<void>
+```
+
+get AuthTokens from hostapp backend and send it to miniapp
+
+| Param         | Type                                                                |
+| ------------- | ------------------------------------------------------------------- |
+| **`options`** | <code>{ appId: string; tokens: { [key: string]: string; }; }</code> |
 
 --------------------
 
