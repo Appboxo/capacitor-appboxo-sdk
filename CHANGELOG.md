@@ -1,4 +1,10 @@
 # Changelog
+## [0.10.0]
+- saveState is false by default
+- add style_5 for ActionButtons
+- [android] add esim direct install
+- update native sdk versions
+
 ## [0.9.1]
 - fix ios build
 

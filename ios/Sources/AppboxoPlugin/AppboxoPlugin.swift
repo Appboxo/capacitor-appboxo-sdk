@@ -66,7 +66,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let extraUrlParams = call.getObject("extraUrlParams")?.toMap() ?? nil
         let colors = call.getObject("colors")?.toMap() ?? nil
         let enableSplash = call.getBool("enableSplash")
-        let saveState = call.getBool("saveState", true)
+        let saveState = call.getBool("saveState", false)
         let urlSuffix = call.getString("urlSuffix", "")
         let pageAnimation = call.getString("pageAnimation", "")
 

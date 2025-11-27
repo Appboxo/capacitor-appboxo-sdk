@@ -38,7 +38,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val userId = call.getString("userId") ?: ""
         val language = call.getString("language") ?: "en"
         val sandboxMode = call.getBoolean("sandboxMde", false)!!
-        val enableMultitaskMode = call.getBoolean("enableMultitaskMode", false)!!
+        val enableMultitaskMode = call.getBoolean("enableMultitaskMode", true)!!
         val theme = call.getString("theme", "system")!!
         val isDebug = call.getBoolean("isDebug", false)!!
         val showPermissionsPage = call.getBoolean("showPermissionsPage", true)!!
@@ -80,7 +80,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val pageAnimation =
             runCatching { PageAnimation.valueOf(call.getString("pageAnimation") ?: "") }
                 .getOrDefault(PageAnimation.BOTTOM_TO_TOP)
-        val saveState = call.getBoolean("saveState") ?: true
+        val saveState = call.getBoolean("saveState") ?: false
         handler?.post {
             val miniapp: Miniapp = Boxo.getMiniapp(appId)
                 .setCustomEventListener(this)
