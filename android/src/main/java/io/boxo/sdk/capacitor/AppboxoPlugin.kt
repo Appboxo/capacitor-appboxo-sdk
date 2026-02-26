@@ -2,6 +2,7 @@ package io.boxo.sdk.capacitor
 
 import android.os.Handler
 import android.os.Looper
+import android.graphics.Color
 import io.boxo.data.models.MiniappData
 import io.boxo.data.models.PageAnimation
 import io.boxo.js.params.CustomEvent
@@ -50,22 +51,39 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
             "dark" -> Config.Theme.DARK
             else -> Config.Theme.SYSTEM
         }
-        Boxo
-            .setConfig(
-                Config.Builder()
-                    .setClientId(clientId)
-                    .setUserId(userId)
-                    .sandboxMode(sandboxMode)
-                    .multitaskMode(enableMultitaskMode)
-                    .setTheme(globalTheme)
-                    .setLanguage(language)
-                    .permissionsPage(showPermissionsPage)
-                    .showClearCache(showClearCache)
-                    .showAboutPage(showAboutPage)
-                    .setMiniappSettingsExpirationTime(miniappSettingsExpirationTime)
-                    .debug(isDebug)
-                    .build()
-            )
+        val splashOptions = call.getObject("splashScreenOptions")
+        Boxo.setConfig(
+            Config.Builder()
+                .setClientId(clientId)
+                .setUserId(userId)
+                .sandboxMode(sandboxMode)
+                .multitaskMode(enableMultitaskMode)
+                .setTheme(globalTheme)
+                .setLanguage(language)
+                .permissionsPage(showPermissionsPage)
+                .showClearCache(showClearCache)
+                .showAboutPage(showAboutPage)
+                .setMiniappSettingsExpirationTime(miniappSettingsExpirationTime)
+                .debug(isDebug).apply {
+                    if (splashOptions != null) {
+                        setProgressBarColors(
+                            lightIndicator =
+                                Color.parseColor(splashOptions.getString("lightProgressIndicator")),
+                            lightTrack =
+                                Color.parseColor(splashOptions.getString("lightProgressTrack")),
+                            darkIndicator =
+                                Color.parseColor(splashOptions.getString("darkProgressIndicator")),
+                            darkTrack =
+                                Color.parseColor(splashOptions.getString("darkProgressTrack"))
+                        )
+                        setSplashBackgroundColors(
+                            light = Color.parseColor(splashOptions.getString("lightBackground")),
+                            dark = Color.parseColor(splashOptions.getString("darkBackground"))
+                        )
+                    }
+                }
+                .build()
+        )
     }
 
     @PluginMethod

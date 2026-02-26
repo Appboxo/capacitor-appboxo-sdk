@@ -11,7 +11,15 @@ Boxo.setConfig({
   clientId: clientId,
   enableMultitaskMode: false,
   userId: '',
-  showAboutPage: false
+  showAboutPage: false,
+  splashScreenOptions: {
+    lightProgressIndicator: "#000000",
+    lightProgressTrack: "#DEDEDE",
+    darkProgressIndicator: "#DEDEDE",
+    darkProgressTrack: "#000000",
+    lightBackground:"#C495FF",
+    darkBackground:"#6A22C9"
+  }
 });
 
 Boxo.addListener('custom_event', customEvent => {

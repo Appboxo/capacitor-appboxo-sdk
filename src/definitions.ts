@@ -105,6 +105,10 @@ export interface ConfigOptions {
   * use it to change miniapp settings cache time in sec. By default is 60 sec
   */
   miniappSettingsExpirationTime?: number;
+  /**
+  * (optional) setup splash screen configs
+  */
+  splashScreenOptions?: SplashScreenOptions;
 }
 
 export interface OpenMiniappOptions {
@@ -144,6 +148,14 @@ export interface OpenMiniappOptions {
   * (optional) use to change launch animation for miniapp.
   */
   pageAnimation?: 'BOTTOM_TO_TOP' | 'TOP_TO_BOTTOM' | 'LEFT_TO_RIGHT' | 'RIGHT_TO_LEFT' | 'FADE_IN';
+}
+export interface SplashScreenOptions {
+  lightBackground: string;
+  darkBackground: string;
+  lightProgressIndicator: string;
+  lightProgressTrack: string;
+  darkProgressIndicator: string;
+  darkProgressTrack: string;
 }
 
 export interface ColorOptions {
