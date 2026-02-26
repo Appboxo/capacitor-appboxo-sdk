@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import Capacitor
 import BoxoSDK
 
@@ -55,6 +56,30 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         config.showAboutPage = showAboutPage
         config.setUserId(id: userId)
         config.miniappSettingsExpirationTime = miniappSettingsExpirationTime
+
+        if let splashOptions = call.getObject("splashScreenOptions") {
+            if let lightBg = splashOptions["lightBackground"] as? String,
+               let darkBg = splashOptions["darkBackground"] as? String,
+               let lightBgColor = UIColor(hex: lightBg),
+               let darkBgColor = UIColor(hex: darkBg) {
+                config.splashBackgroundColors = SplashBackgroundColors(light: lightBgColor, dark: darkBgColor)
+            }
+            if let lightIndicator = splashOptions["lightProgressIndicator"] as? String,
+               let lightTrack = splashOptions["lightProgressTrack"] as? String,
+               let darkIndicator = splashOptions["darkProgressIndicator"] as? String,
+               let darkTrack = splashOptions["darkProgressTrack"] as? String,
+               let lightIndicatorColor = UIColor(hex: lightIndicator),
+               let lightTrackColor = UIColor(hex: lightTrack),
+               let darkIndicatorColor = UIColor(hex: darkIndicator),
+               let darkTrackColor = UIColor(hex: darkTrack) {
+                config.progressBarColors = ProgressBarColors(
+                    lightIndicator: lightIndicatorColor,
+                    lightTrack: lightTrackColor,
+                    darkIndicator: darkIndicatorColor,
+                    darkTrack: darkTrackColor
+                )
+            }
+        }
 
         Boxo.shared.setConfig(config: config)
     }
@@ -326,5 +351,47 @@ extension JSObject {
         }
 
         return dict
+    }
+}
+
+extension UIColor {
+    convenience init?(hex: String) {
+        let hex = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "#", with: "")
+
+        guard let int = UInt64(hex, radix: 16) else { return nil }
+
+        switch hex.count {
+        case 6: // RRGGBB
+            self.init(
+                red: CGFloat((int >> 16) & 0xFF) / 255.0,
+                green: CGFloat((int >> 8) & 0xFF) / 255.0,
+                blue: CGFloat(int & 0xFF) / 255.0,
+                alpha: 1.0
+            )
+
+        case 8: // RRGGBBAA
+            self.init(
+                red: CGFloat((int >> 24) & 0xFF) / 255.0,
+                green: CGFloat((int >> 16) & 0xFF) / 255.0,
+                blue: CGFloat((int >> 8) & 0xFF) / 255.0,
+                alpha: CGFloat(int & 0xFF) / 255.0
+            )
+
+        case 3: // RGB (short form)
+            let r = ((int >> 8) & 0xF) * 17
+            let g = ((int >> 4) & 0xF) * 17
+            let b = (int & 0xF) * 17
+
+            self.init(
+                red: CGFloat(r) / 255.0,
+                green: CGFloat(g) / 255.0,
+                blue: CGFloat(b) / 255.0,
+                alpha: 1.0
+            )
+
+        default:
+            return nil
+        }
     }
 }
