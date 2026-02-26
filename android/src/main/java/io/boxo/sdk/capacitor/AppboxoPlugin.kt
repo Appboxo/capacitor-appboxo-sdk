@@ -38,7 +38,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val clientId = call.getString("clientId")!!
         val userId = call.getString("userId") ?: ""
         val language = call.getString("language") ?: "en"
-        val sandboxMode = call.getBoolean("sandboxMde", false)!!
+        val sandboxMode = call.getBoolean("sandboxMode", false)!!
         val enableMultitaskMode = call.getBoolean("enableMultitaskMode", true)!!
         val theme = call.getString("theme", "system")!!
         val isDebug = call.getBoolean("isDebug", false)!!

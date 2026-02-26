@@ -32,7 +32,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
         let clientId = call.getString("clientId") ?? ""
         let userId = call.getString("userId") ?? ""
         let language = call.getString("language") ?? "en"
-        let sandboxMode = call.getBool("sandboxMde", false)
+        let sandboxMode = call.getBool("sandboxMode", false)
         let theme = call.getString("theme", "system")
         let showPermissionsPage = call.getBool("showPermissionsPage", true)
         let showClearCache = call.getBool("showClearCache", true)

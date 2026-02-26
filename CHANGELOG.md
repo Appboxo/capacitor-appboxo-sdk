@@ -1,6 +1,7 @@
 # Changelog
 ## [0.11.0]
 - add splash screen configuration options
+- fix sandbox mode
 
 ## [0.10.0]
 - saveState is false by default
