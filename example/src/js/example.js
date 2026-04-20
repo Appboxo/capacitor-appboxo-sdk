@@ -9,7 +9,6 @@ let requestId = '';
 
 Boxo.setConfig({
   clientId: clientId,
-  enableMultitaskMode: false,
   userId: '',
   showAboutPage: false,
   splashScreenOptions: {

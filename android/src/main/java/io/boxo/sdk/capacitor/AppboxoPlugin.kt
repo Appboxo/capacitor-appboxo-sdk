@@ -3,6 +3,7 @@ package io.boxo.sdk.capacitor
 import android.os.Handler
 import android.os.Looper
 import android.graphics.Color
+import androidx.fragment.app.FragmentActivity
 import io.boxo.data.models.MiniappData
 import io.boxo.data.models.PageAnimation
 import io.boxo.js.params.CustomEvent
@@ -12,7 +13,7 @@ import io.boxo.sdk.Config
 import io.boxo.sdk.Miniapp
 import io.boxo.sdk.MiniappConfig
 import io.boxo.sdk.MiniappListCallback
-import io.boxo.ui.main.BoxoActivity
+import io.boxo.ui.main.BoxoFragment
 import com.getcapacitor.JSArray
 import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
@@ -39,7 +40,6 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         val userId = call.getString("userId") ?: ""
         val language = call.getString("language") ?: "en"
         val sandboxMode = call.getBoolean("sandboxMode", false)!!
-        val enableMultitaskMode = call.getBoolean("enableMultitaskMode", true)!!
         val theme = call.getString("theme", "system")!!
         val isDebug = call.getBoolean("isDebug", false)!!
         val showPermissionsPage = call.getBoolean("showPermissionsPage", true)!!
@@ -57,7 +57,6 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
                 .setClientId(clientId)
                 .setUserId(userId)
                 .sandboxMode(sandboxMode)
-                .multitaskMode(enableMultitaskMode)
                 .setTheme(globalTheme)
                 .setLanguage(language)
                 .permissionsPage(showPermissionsPage)
@@ -137,7 +136,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
             configBuilder.saveState(saveState)
             configBuilder.pageAnimation(pageAnimation)
             miniapp.setConfig(configBuilder.build())
-            miniapp.open(bridge.activity)
+            miniapp.open(bridge.activity as FragmentActivity)
         }
     }
 
@@ -164,7 +163,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
     }
 
     override fun handle(
-        miniAppActivity: BoxoActivity,
+        fragment: BoxoFragment,
         miniapp: Miniapp,
         customEvent: CustomEvent
     ) {
@@ -224,7 +223,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         sendEvent(MINIAPP_LIFECYCLE_EVENT_NAME, params)
     }
 
-    override fun onAuth(boxoActivity: BoxoActivity, miniapp: Miniapp) {
+    override fun onAuth(fragment: BoxoFragment, miniapp: Miniapp) {
         val params = JSObject()
         params.put("appId", miniapp.appId)
         params.put("lifecycle", "onAuth")
@@ -313,7 +312,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
     }
 
     override fun handle(
-        boxoActivity: BoxoActivity,
+        fragment: BoxoFragment,
         miniapp: Miniapp,
         paymentData: PaymentData
     ) {

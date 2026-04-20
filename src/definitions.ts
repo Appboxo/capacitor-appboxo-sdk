@@ -35,7 +35,6 @@ export interface AppboxoPlugin {
   getMiniapps(): Promise<MiniappListResult>;
   /**
    * Miniapp opens on a native screen. To show payment processing page need to hide miniapp screen.
-   * To use this function need to enable 'enableMultitaskMode: true' in Boxo.setConfig()
    */
   hideMiniapps(): Promise<void>;
   /**
@@ -76,11 +75,6 @@ export interface ConfigOptions {
    * switch to sandbox mode
    */
   sandboxMode?: boolean;
-  /**
-   * Each miniapp appears as a task in the Recents screen.
-   * !It works only on android devices.
-   */
-  enableMultitaskMode?: boolean;
   /**
    * theme for splash screen and other native components used inside miniapp.
    */

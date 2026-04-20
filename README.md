@@ -158,7 +158,6 @@ hideMiniapps() => Promise<void>
 ```
 
 Miniapp opens on a native screen. To show payment processing page need to hide miniapp screen.
-To use this function need to enable 'enableMultitaskMode: true' in Boxo.setConfig()
 
 --------------------
 
@@ -227,20 +226,19 @@ logout() => Promise<void>
 
 #### ConfigOptions
 
-| Prop                                | Type                                                                | Description                                                                              |
-| ----------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **`clientId`**                      | <code>string</code>                                                 | your client id from dashboard                                                            |
-| **`userId`**                        | <code>string</code>                                                 | hostapp userId, will be used for the Consent Management                                  |
-| **`language`**                      | <code>string</code>                                                 | language value will be passed to the miniapp                                             |
-| **`sandboxMode`**                   | <code>boolean</code>                                                | switch to sandbox mode                                                                   |
-| **`enableMultitaskMode`**           | <code>boolean</code>                                                | Each miniapp appears as a task in the Recents screen. !It works only on android devices. |
-| **`theme`**                         | <code>'light' \| 'dark' \| 'system'</code>                          | theme for splash screen and other native components used inside miniapp.                 |
-| **`isDebug`**                       | <code>boolean</code>                                                | enables webview debugging                                                                |
-| **`showPermissionsPage`**           | <code>boolean</code>                                                | use it to hide "Settings" from Miniapp menu                                              |
-| **`showClearCache`**                | <code>boolean</code>                                                | use it to hide "Clear cache" from Miniapp menu                                           |
-| **`showAboutPage`**                 | <code>boolean</code>                                                | use it to hide "About Page" from Miniapp menu                                            |
-| **`miniappSettingsExpirationTime`** | <code>number</code>                                                 | use it to change miniapp settings cache time in sec. By default is 60 sec                |
-| **`splashScreenOptions`**           | <code><a href="#splashscreenoptions">SplashScreenOptions</a></code> | (optional) setup splash screen configs                                                   |
+| Prop                                | Type                                                                | Description                                                               |
+| ----------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **`clientId`**                      | <code>string</code>                                                 | your client id from dashboard                                             |
+| **`userId`**                        | <code>string</code>                                                 | hostapp userId, will be used for the Consent Management                   |
+| **`language`**                      | <code>string</code>                                                 | language value will be passed to the miniapp                              |
+| **`sandboxMode`**                   | <code>boolean</code>                                                | switch to sandbox mode                                                    |
+| **`theme`**                         | <code>'light' \| 'dark' \| 'system'</code>                          | theme for splash screen and other native components used inside miniapp.  |
+| **`isDebug`**                       | <code>boolean</code>                                                | enables webview debugging                                                 |
+| **`showPermissionsPage`**           | <code>boolean</code>                                                | use it to hide "Settings" from Miniapp menu                               |
+| **`showClearCache`**                | <code>boolean</code>                                                | use it to hide "Clear cache" from Miniapp menu                            |
+| **`showAboutPage`**                 | <code>boolean</code>                                                | use it to hide "About Page" from Miniapp menu                             |
+| **`miniappSettingsExpirationTime`** | <code>number</code>                                                 | use it to change miniapp settings cache time in sec. By default is 60 sec |
+| **`splashScreenOptions`**           | <code><a href="#splashscreenoptions">SplashScreenOptions</a></code> | (optional) setup splash screen configs                                    |
 
 
 #### SplashScreenOptions

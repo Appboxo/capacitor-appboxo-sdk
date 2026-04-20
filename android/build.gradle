@@ -56,9 +56,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation project(':capacitor-android')
-    implementation('io.boxo.sdk:boxo-android:1.39.1') {
-        exclude group: 'com.google.android.gms', module: 'play-services-location'
-    }
+    implementation('io.boxo.sdk:boxo-android:1.40.2')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
