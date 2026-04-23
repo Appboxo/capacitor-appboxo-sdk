@@ -1,4 +1,7 @@
 # Changelog
+## [0.12.1]
+- update android native sdk version to v1.40.4
+
 ## [0.12.0]
 - update android native sdk version to v1.40.2
 - remove multitask mode
