@@ -18,7 +18,13 @@ Boxo.setConfig({
     darkProgressTrack: "#000000",
     lightBackground:"#C495FF",
     darkBackground:"#6A22C9"
-  }
+  },
+//  lottieProgressOptions: {
+//    light: 'Loading.json',
+//    dark: 'Loading.json',
+//    width: 200,
+//    height: 200,
+//  }
 });
 
 Boxo.addListener('custom_event', customEvent => {

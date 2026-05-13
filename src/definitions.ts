@@ -103,6 +103,10 @@ export interface ConfigOptions {
   * (optional) setup splash screen configs
   */
   splashScreenOptions?: SplashScreenOptions;
+  /**
+  * (optional) setup lottie progress indicator configs
+  */
+  lottieProgressOptions?: LottieProgressOptions;
 }
 
 export interface OpenMiniappOptions {
@@ -143,6 +147,7 @@ export interface OpenMiniappOptions {
   */
   pageAnimation?: 'BOTTOM_TO_TOP' | 'TOP_TO_BOTTOM' | 'LEFT_TO_RIGHT' | 'RIGHT_TO_LEFT' | 'FADE_IN';
 }
+
 export interface SplashScreenOptions {
   lightBackground: string;
   darkBackground: string;
@@ -150,6 +155,13 @@ export interface SplashScreenOptions {
   lightProgressTrack: string;
   darkProgressIndicator: string;
   darkProgressTrack: string;
+}
+
+export interface LottieProgressOptions {
+  light: string;
+  dark?: string;
+  width?: number;
+  height?: number;
 }
 
 export interface ColorOptions {
