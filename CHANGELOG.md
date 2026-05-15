@@ -1,4 +1,7 @@
 # Changelog
+## [0.13.0]
+- add Lottie animation as a miniapp loader
+
 ## [0.12.1]
 - update android native sdk version to v1.40.4
 
