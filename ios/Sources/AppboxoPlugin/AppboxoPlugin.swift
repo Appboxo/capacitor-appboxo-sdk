@@ -81,20 +81,6 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
             }
         }
 
-        if let lottieOptions = call.getObject("lottieProgressOptions"),
-           let lightPath = lottieOptions["light"] as? String,
-           !lightPath.isEmpty {
-            let darkPath = (lottieOptions["dark"] as? String) ?? ""
-            let width = lottieOptions.double(forKey: "width") ?? 100
-            let height = lottieOptions.double(forKey: "height") ?? 100
-            config.progressBarLottieAssets = .init(
-                lightAssetPath: lightPath,
-                darkAssetPath: darkPath,
-                width: width,
-                height: height
-            )
-        }
-
         Boxo.shared.setConfig(config: config)
     }
 
@@ -353,13 +339,6 @@ extension AppboxoPlugin : MiniappDelegate {
 }
 
 extension JSObject {
-    func double(forKey key: String) -> Double? {
-        if let d = self[key] as? Double { return d }
-        if let i = self[key] as? Int { return Double(i) }
-        if let n = self[key] as? NSNumber { return n.doubleValue }
-        return nil
-    }
-
     func toMap() -> [String : Any] {
         var dict = [String : Any]()
 
