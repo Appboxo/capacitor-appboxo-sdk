@@ -52,7 +52,6 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
             else -> Config.Theme.SYSTEM
         }
         val splashOptions = call.getObject("splashScreenOptions")
-        val lottieProgressOptions = call.getObject("lottieProgressOptions")
         Boxo.setConfig(
             Config.Builder()
                 .setClientId(clientId)
@@ -79,15 +78,6 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
                         setSplashBackgroundColors(
                             light = Color.parseColor(splashOptions.getString("lightBackground")),
                             dark = Color.parseColor(splashOptions.getString("darkBackground"))
-                        )
-                    }
-
-                    lottieProgressOptions?.also { options ->
-                        setProgressBarLottieFromAssets(
-                            lightAssetPath = options.getString("light") ?: "",
-                            darkAssetPath = options.getString("dark"),
-                            widthDp = options.optDouble("width")?.toInt(),
-                            heightDp = options.optDouble("height")?.toInt()
                         )
                     }
                 }
