@@ -252,6 +252,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
             val appId: String = call.getString("appId")!!
             val data = PaymentData(
                 call.getString("transactionToken") ?: "",
+                call.getString("orderPaymentId") ?: "",
                 call.getString("miniappOrderId") ?: "",
                 call.getDouble("amount") ?: 0.0,
                 call.getString("currency") ?: "",
@@ -320,6 +321,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         params.put("appId", miniapp.appId)
         try {
             params.put("transactionToken", paymentData.transactionToken)
+            params.put("orderPaymentId", paymentData.orderPaymentId)
             params.put("miniappOrderId", paymentData.miniappOrderId)
             params.put("amount", paymentData.amount)
             params.put("currency", paymentData.currency)
