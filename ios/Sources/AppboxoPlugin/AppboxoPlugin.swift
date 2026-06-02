@@ -199,6 +199,7 @@ public class AppboxoPlugin: CAPPlugin, CAPBridgedPlugin {
 
         let paymentData = PaymentData()
         paymentData.transactionToken = call.getString("transactionToken") ?? ""
+        paymentData.orderPaymentId = call.getString("orderPaymentId") ?? ""
         paymentData.miniappOrderId = call.getString("miniappOrderId") ?? ""
         paymentData.amount = call.getDouble("amount", 0.0)
         paymentData.currency = call.getString("currency") ?? ""
@@ -250,6 +251,7 @@ extension AppboxoPlugin : MiniappDelegate {
         let dict = [
             "appId" : miniapp.appId,
             "transactionToken" : paymentData.transactionToken,
+            "orderPaymentId" : paymentData.orderPaymentId,
             "miniappOrderId" : paymentData.miniappOrderId,
             "amount" : paymentData.amount,
             "currency" : paymentData.currency,

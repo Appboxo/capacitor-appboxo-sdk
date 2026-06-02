@@ -169,6 +169,7 @@ export interface CustomEvent {
 export interface PaymentEvent {
   appId: string;
   transactionToken?: string;
+  orderPaymentId?: string;
   miniappOrderId?: string;
   amount: number;
   currency?: string;
