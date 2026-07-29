@@ -223,7 +223,7 @@ class AppboxoPlugin : Plugin(), Miniapp.LifecycleListener,
         sendEvent(MINIAPP_LIFECYCLE_EVENT_NAME, params)
     }
 
-    override fun onAuth(fragment: BoxoFragment, miniapp: Miniapp) {
+    override fun onAuth(fragment: BoxoFragment, miniapp: Miniapp, requiredFields: List<String>) {
         val params = JSObject()
         params.put("appId", miniapp.appId)
         params.put("lifecycle", "onAuth")

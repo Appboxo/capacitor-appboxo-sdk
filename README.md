@@ -294,6 +294,7 @@ logout() => Promise<void>
 | ---------------------- | ------------------- |
 | **`appId`**            | <code>string</code> |
 | **`transactionToken`** | <code>string</code> |
+| **`orderPaymentId`**   | <code>string</code> |
 | **`miniappOrderId`**   | <code>string</code> |
 | **`amount`**           | <code>number</code> |
 | **`currency`**         | <code>string</code> |
